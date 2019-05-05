@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-
-    <FrameLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/content"/>
+        android:layout_marginBottom="56dp" />
 
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottombar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar"
-        android:background="@color/colorAccent"
-        app:bb_inActiveTabAlpha="2"/>
+    <eu.long1.spacetablayout.SpaceTabLayout
+        android:id="@+id/spaceTabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_behavior="eu.long1.spacetablayout.SpaceTabLayoutBehavior"
+        app:number_of_tabs="three"
+        app:starting_position="two"
+        app:text_color="@color/lightgray"
+        app:icon_one="@drawable/history"
+        app:icon_two="@drawable/home"
+        app:icon_three="@drawable/user"
+        app:text_one="Riwayat"
+        app:text_two="Beranda"
+        app:text_three="Akun"/>
 
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

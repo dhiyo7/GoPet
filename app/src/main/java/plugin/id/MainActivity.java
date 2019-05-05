@@ -1,41 +1,60 @@
 package plugin.id;
 
 import android.support.annotation.IdRes;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import eu.long1.spacetablayout.SpaceTabLayout;
+
 public class MainActivity extends AppCompatActivity {
 
-    private BottomBar bottomBar;
+    SpaceTabLayout tabLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomBar = (BottomBar)findViewById(R.id.bottombar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            Fragment fragment = null;
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new HistoryFragment());
+        fragmentList.add(new HomeFragment());
+        fragmentList.add(new ProfileFragment());
 
-                if (tabId == R.id.tab_home){
-                    fragment = new HomeFragment();
-                }else if (tabId == R.id.tab_search){
-                    fragment = new HistoryFragment();
-                }else if (tabId == R.id.tab_akun){
-                    fragment = new ProfileFragment();
-                }
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content,fragment)
-                        .commit();
+        final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.activity_main);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tabLayout = (SpaceTabLayout) findViewById(R.id.spaceTabLayout);
+
+        tabLayout.initialize(viewPager, getSupportFragmentManager(), fragmentList, savedInstanceState);
+        tabLayout.setTabOneOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, "Welcome to my App", Snackbar.LENGTH_SHORT );
+                snackbar.show();
+            }
+        });
+
+        tabLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplication(), "" + tabLayout.getCurrentPosition(), Toast.LENGTH_SHORT).show();
 
             }
         });
+
     }
 }
