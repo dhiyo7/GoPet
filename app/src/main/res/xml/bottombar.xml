@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        title="Beranda"
+        icon="@drawable/home"
+        activeColor ="@color/colorPrimary"
+        titleSize = "4sp"/>
+    <tab
+        id="@+id/tab_search"
+        title="Pencarian"
+        icon="@drawable/search"
+        activeColor ="@color/colorPrimary"/>
+    <tab
+        id="@+id/tab_akun"
+        title="Akun"
+        icon="@drawable/user"
+        activeColor ="@color/colorPrimary"/>
+</tabs>
