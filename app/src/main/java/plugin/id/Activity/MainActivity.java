@@ -1,6 +1,5 @@
-package plugin.id;
+package plugin.id.Activity;
 
-import android.support.annotation.IdRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -10,13 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import eu.long1.spacetablayout.SpaceTabLayout;
+import plugin.id.Fragment.HistoryFragment;
+import plugin.id.Fragment.HomeFragment;
+import plugin.id.Fragment.ProfileFragment;
+import plugin.id.R;
 
 public class MainActivity extends AppCompatActivity {
 

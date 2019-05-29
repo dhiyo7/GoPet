@@ -1,7 +1,9 @@
-package plugin.id;
+package plugin.id.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import plugin.id.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
