@@ -44,11 +44,11 @@
                     <TextView
                         android:id="@+id/tvNameFood"
                         android:layout_weight="1"
+                        android:maxLines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nama Food"
-                        android:gravity="center"
-                        android:textSize="20sp"/>
+                        android:gravity="left"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
                         android:text="Rp. "
                         android:textStyle="bold"
                         android:textColor="@color/colorAccent"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         />
 
                     <TextView
@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:text="Price Food"
                         android:gravity="left"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@color/colorAccent"/>
 

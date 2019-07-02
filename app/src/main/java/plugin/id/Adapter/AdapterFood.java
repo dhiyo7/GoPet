@@ -1,6 +1,7 @@
 package plugin.id.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import plugin.id.Activity.DetailFoodActivity;
 import plugin.id.Model.ModelFood;
 import plugin.id.R;
 import plugin.id.Server.ApiClient;
@@ -42,7 +44,14 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return data.size();
+
+        if(data!=null){
+            return data.size();
+        } else{
+            return 0;
+        }
+
+//        return data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -57,11 +66,23 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.ViewHolder> {
             ivFood = itemView.findViewById(R.id.ivFood);
         }
 
-        public void binding(ModelFood modelFood, Context context) {
+        public void binding(final ModelFood modelFood, final Context context) {
 
             tvNameFood.setText(modelFood.getName());
             tvPriceFood.setText(modelFood.getPrice());
-            Glide.with(context).load(ApiClient.ENDPOINT+"images/"+modelFood.getImage()).into(ivFood);
+            Glide.with(context)
+                    .load(ApiClient.ENDPOINT+"images/"+modelFood
+                            .getImage())
+                    .error((R.drawable.item_error))
+                    .into(ivFood);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DetailFoodActivity.class);
+                    intent.putExtra("ID", modelFood.getId());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

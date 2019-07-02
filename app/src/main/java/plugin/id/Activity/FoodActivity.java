@@ -15,7 +15,7 @@ import plugin.id.Converter.BaseListResponse;
 import plugin.id.Model.ModelFood;
 import plugin.id.R;
 import plugin.id.Server.ApiClient;
-import plugin.id.Server.ApiInterface;
+import plugin.id.Server.FoodInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,22 +26,24 @@ public class FoodActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private List<ModelFood> modelFoods;
     private RecyclerView.Adapter adapter;
-    private ApiInterface apiInterface;
+    private FoodInterface foodInterface;
     ProgressBar prograss;
+    private retrofit2.Call<BaseListResponse<ModelFood>> call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
-        getSupportActionBar().setTitle("Food & Madicine");
+        getSupportActionBar().setTitle("Pakan n Obat");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        apiInterface = ApiClient.getApiInterfaceService();
+        foodInterface = ApiClient.getFoodInterfaceService();
         prograss = findViewById(R.id.prograss);
         rvFood = findViewById(R.id.rvFood);
         layoutManager = new LinearLayoutManager(this);
-        rvFood.setLayoutManager(layoutManager);
+        rvFood.setLayoutManager(new LinearLayoutManager(this));
+//        adapter.notifyDataSetChanged();
         rvFood.setHasFixedSize(true);
 
     }
@@ -53,7 +55,7 @@ public class FoodActivity extends AppCompatActivity {
     }
 
     public void fetchData(){
-        Call<BaseListResponse<ModelFood>> call = apiInterface.getFood();
+        call = foodInterface.getFood();
         call.enqueue(new Callback<BaseListResponse<ModelFood>>() {
             @Override
             public void onResponse(Call<BaseListResponse<ModelFood>> call, Response<BaseListResponse<ModelFood>> response) {

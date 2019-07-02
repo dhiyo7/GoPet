@@ -18,7 +18,23 @@ public class ApiClient {
         return retrofit;
     }
 
-    public static ApiInterface getApiInterfaceService(){
-        return getApiClient().create(ApiInterface.class);
+    public static FoodInterface getFoodInterfaceService(){
+        return getApiClient().create(FoodInterface.class);
+    }
+
+    public static PetshopInterface getPetshopInterface(){
+        return getApiClient().create(PetshopInterface.class);
+    }
+
+    public static WashspaInterface getWashspaInterface(){
+        return getApiClient().create(WashspaInterface.class);
+    }
+
+    public static BuyanimalInterface getBuyanimalInterface(){
+        return getApiClient().create(BuyanimalInterface.class);
+    }
+
+    public static AccecorisInterface getAccecorisInterface(){
+        return getApiClient().create(AccecorisInterface.class);
     }
 }

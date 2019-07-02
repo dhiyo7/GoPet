@@ -55,6 +55,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.facebook.shimmer:shimmer:0.4.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.stone.vega.library:VegaLayoutManager:1.0.1'
+
 
     //Text Description
     implementation 'com.uncopt:android.justified:1.0'

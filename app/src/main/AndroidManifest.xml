@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="plugin.id">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.FoodActivity"></activity>
+        <activity
+            android:name=".Activity.DetailWashSpaActivity"
+            android:label="@string/title_activity_detail_wash_spa"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activity.WashSpaActivity" />
+        <activity
+            android:name=".Activity.DetailPetshopActivity"
+            android:label="@string/title_activity_detail_petshop"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.DetailFoodActivity"
+            android:label="@string/title_activity_detail_food"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.PetshopActivity" />
+        <activity android:name=".Activity.FoodActivity" />
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
