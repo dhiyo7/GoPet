@@ -11,8 +11,8 @@ import plugin.id.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnLogin;
-    TextView txtSignUp;
+    private Button btnLogin;
+    private TextView txtSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

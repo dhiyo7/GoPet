@@ -37,4 +37,8 @@ public class ApiClient {
     public static AccecorisInterface getAccecorisInterface(){
         return getApiClient().create(AccecorisInterface.class);
     }
+
+    public static UserInterface getUserInterface(){
+        return getApiClient().create(UserInterface.class);
+    }
 }

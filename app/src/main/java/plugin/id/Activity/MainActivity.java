@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.long1.spacetablayout.SpaceTabLayout;
-import plugin.id.Fragment.HistoryFragment;
+import plugin.id.Fragment.ComunityFragment;
 import plugin.id.Fragment.HomeFragment;
 import plugin.id.Fragment.ProfileFragment;
 import plugin.id.R;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new HistoryFragment());
+        fragmentList.add(new ComunityFragment());
         fragmentList.add(new HomeFragment());
         fragmentList.add(new ProfileFragment());
 

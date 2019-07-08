@@ -23,7 +23,7 @@
         app:icon_one="@drawable/history"
         app:icon_two="@drawable/home"
         app:icon_three="@drawable/user"
-        app:text_one="Riwayat"
+        app:text_one="Komunitas"
         app:text_two="Beranda"
         app:text_three="Akun"/>
 

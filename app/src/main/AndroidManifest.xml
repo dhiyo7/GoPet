@@ -11,10 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activity.DoctorActivity"></activity>
+        <activity
+            android:name=".Activity.DetailBuyActivity"
+            android:label="@string/title_activity_detail_buy"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.BuyAnimalActivity" />
         <activity
             android:name=".Activity.DetailWashSpaActivity"
             android:label="@string/title_activity_detail_wash_spa"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.WashSpaActivity" />
         <activity
             android:name=".Activity.DetailPetshopActivity"

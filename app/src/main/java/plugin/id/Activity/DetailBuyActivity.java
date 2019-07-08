@@ -19,30 +19,28 @@ import com.bumptech.glide.Glide;
 import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
 import plugin.id.Converter.BaseResponse;
-import plugin.id.Model.ModelFood;
+import plugin.id.Model.ModelBuyAnimal;
 import plugin.id.R;
 import plugin.id.Server.ApiClient;
-import plugin.id.Server.FoodInterface;
+import plugin.id.Server.BuyanimalInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailFoodActivity extends AppCompatActivity {
+public class DetailBuyActivity extends AppCompatActivity {
 
-    private TextView tvPrice, tvCategory, tvSeller;
-    private ImageView ivDetailFood;
-    private JustifiedTextView deskripsi;
-    private FoodInterface foodInterface;
+    private TextView tvName, tvAddress, tvNohp;
+    private JustifiedTextView tvDescribBuy;
+    private ImageView ivDetailBuy;
+    private BuyanimalInterface buyanimalInterface;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private AppBarLayout appBarLayout;
     private String tittle = " ";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_food);
+        setContentView(R.layout.activity_detail_buy);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -58,6 +56,7 @@ public class DetailFoodActivity extends AppCompatActivity {
         finish();
         return true;
     }
+
     private Spanned fromHtml(String s) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -68,14 +67,14 @@ public class DetailFoodActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
-        tvPrice = findViewById(R.id.tvPrice);
-        tvCategory = findViewById(R.id.tvCategory);
-        tvSeller = findViewById(R.id.tvSeller);
-        deskripsi = (JustifiedTextView) findViewById(R.id.tvDesc);
-        ivDetailFood = (ImageView) findViewById(R.id.ivDetailFood);
-        foodInterface = ApiClient.getFoodInterfaceService();
+        tvName = findViewById(R.id.tvName);
+        tvAddress = findViewById(R.id.tvAddress);
+        tvNohp = findViewById(R.id.tvNohp);
+        ivDetailBuy = findViewById(R.id.ivDetailBuy);
+        tvDescribBuy = (JustifiedTextView) findViewById(R.id.tvDescribBuy);
+        buyanimalInterface = ApiClient.getBuyanimalInterface();
         collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setTitle(" ");
+        collapsingToolbarLayout.setTitle("");
         appBarLayout = findViewById(R.id.app_bar);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.BaseOnOffsetChangedListener() {
             @Override
@@ -102,37 +101,36 @@ public class DetailFoodActivity extends AppCompatActivity {
     private String getId(){ return String.valueOf(getIntent().getIntExtra("ID", 0));}
 
     private void fetchData() {
-        Call<BaseResponse<ModelFood>> request = foodInterface.showById(getId());
-        request.enqueue(new Callback<BaseResponse<ModelFood>>() {
+        Call<BaseResponse<ModelBuyAnimal>> request = buyanimalInterface.showById(getId());
+        request.enqueue(new Callback<BaseResponse<ModelBuyAnimal>>() {
             @Override
-            public void onResponse(Call<BaseResponse<ModelFood>> call, Response<BaseResponse<ModelFood>> response) {
+            public void onResponse(Call<BaseResponse<ModelBuyAnimal>> call, Response<BaseResponse<ModelBuyAnimal>> response) {
                 if (response.isSuccessful()){
                     BaseResponse body = response.body();
                     if (body.getStatus()){
-                        fillAll((ModelFood) body.getData());
+                        fillAll((ModelBuyAnimal) body.getData());
                     }
                 }else {
-                    Toast.makeText(DetailFoodActivity.this, "Tidak dapat mengambil data ke server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailBuyActivity.this, "Tidak dapat mengambil data ke server", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<ModelFood>> call, Throwable t) {
-                Toast.makeText(DetailFoodActivity.this, "Ada sesuatu yang salah", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<BaseResponse<ModelBuyAnimal>> call, Throwable t) {
+                Toast.makeText(DetailBuyActivity.this, "Ada sesuatu yang salah", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-    private void fillAll(ModelFood data) {
 
-        tvCategory.setText(data.getCategory());
-        tvPrice.setText(data.getPrice());
-        tvSeller.setText(data.getSeller());
-        deskripsi.setText(fromHtml(data.getDescription()));
-        Glide.with(getApplicationContext()).load(ApiClient.ENDPOINT+"image/"+data.getImage()).into(ivDetailFood);
+    private void fillAll(final ModelBuyAnimal data) {
+
+        tvAddress.setText(data.getAddress());
+        tvNohp.setText(data.getPhone());
+        tvDescribBuy.setText(fromHtml(data.getDescription()));
         collapsingToolbarLayout.setTitle(data.getName());
-        tittle=data.getName();
-
+        tittle = data.getName();
+        Glide.with(getApplicationContext()).load(ApiClient.ENDPOINT+"images/"+data.getImage()).into(ivDetailBuy);
     }
 }
