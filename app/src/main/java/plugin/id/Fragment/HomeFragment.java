@@ -9,9 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import java.util.List;
-
 import plugin.id.Activity.BuyAnimalActivity;
+import plugin.id.Activity.DokterActivity;
 import plugin.id.Activity.FoodActivity;
 import plugin.id.Activity.PetshopActivity;
 import plugin.id.Activity.WashSpaActivity;
@@ -23,7 +22,7 @@ import plugin.id.R;
  */
 public class HomeFragment extends Fragment {
 
-    private LinearLayout crdFood, crdPetshop, crdSpa,crdBuy ;
+    private LinearLayout crdFood, crdPetshop, crdSpa,crdBuy, crdDiagnosa ;
 
 
     public HomeFragment() {
@@ -69,6 +68,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(getActivity(), BuyAnimalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        crdDiagnosa = (LinearLayout)view.findViewById(R.id.crdDiagnosa);
+        crdDiagnosa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(getActivity(), DokterActivity.class);
                 startActivity(intent);
             }
         });

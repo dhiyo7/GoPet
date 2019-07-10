@@ -61,4 +61,8 @@ dependencies {
     //Text Description
     implementation 'com.uncopt:android.justified:1.0'
 
+    //barcode
+    implementation 'me.dm7.barcodescanner:zxing:1.9'
+
+
 }

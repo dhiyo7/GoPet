@@ -1,5 +1,6 @@
 package plugin.id.Activity;
 
+import android.content.SharedPreferences;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -22,11 +23,16 @@ public class MainActivity extends AppCompatActivity {
 
     SpaceTabLayout tabLayout;
 
+    private SharedPreferences setting;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setting = getSharedPreferences("USER", MODE_PRIVATE);
 
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new ComunityFragment());
@@ -57,4 +63,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isNotLoggedIn()){
+            //keluar diubah ke Login
+        }else{
+            //walikane
+        }
+    }
+
+    private boolean isNotLoggedIn() {
+        String token = setting.getString("TOKEN", "UNDIFINED");
+        return token == null || token.equals("UNDIFINED");
+    }
+
 }
