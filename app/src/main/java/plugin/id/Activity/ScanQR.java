@@ -34,7 +34,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
         setContentView(scannerView);
         int currentApiVersion = Build.VERSION.SDK_INT;
 
-        if(currentApiVersion >=  Build.VERSION_CODES.M)
+        if(currentApiVersion >=  Build.VERSION_CODES.KITKAT)
         {
             if(checkPermission())
             {
@@ -62,7 +62,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
         super.onResume();
 
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentapiVersion >= android.os.Build.VERSION_CODES.M) {
+        if (currentapiVersion >= android.os.Build.VERSION_CODES.KITKAT) {
             if (checkPermission()) {
                 if(scannerView == null) {
                     scannerView = new ZXingScannerView(this);

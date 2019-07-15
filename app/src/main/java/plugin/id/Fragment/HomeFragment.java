@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import plugin.id.Activity.BuyAnimalActivity;
+import plugin.id.Activity.ComunityActivity;
 import plugin.id.Activity.DokterActivity;
 import plugin.id.Activity.FoodActivity;
 import plugin.id.Activity.PetshopActivity;
@@ -22,7 +23,7 @@ import plugin.id.R;
  */
 public class HomeFragment extends Fragment {
 
-    private LinearLayout crdFood, crdPetshop, crdSpa,crdBuy, crdDiagnosa ;
+    private LinearLayout crdFood, crdPetshop, crdSpa,crdBuy, crdDiagnosa,crdComunity ;
 
 
     public HomeFragment() {
@@ -80,6 +81,16 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        crdComunity = (LinearLayout)view.findViewById(R.id.crdComunity);
+        crdComunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ComunityActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
