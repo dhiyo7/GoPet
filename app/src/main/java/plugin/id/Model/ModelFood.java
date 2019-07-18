@@ -9,13 +9,14 @@ public class ModelFood {
     @SerializedName("price") private String price;
     @SerializedName("description") private String description;
     @SerializedName("category") private String category;
-    @SerializedName("id_petshop") private int id_petshop;
+    @SerializedName("id_petshop") private String id_petshop;
     @SerializedName("image") private String image;
+    @SerializedName("petshop") private String petshop;
 
     public ModelFood() {
     }
 
-    public ModelFood(int id, String name, String price, String description, String category, int id_petshop, String image) {
+    public ModelFood(int id, String name, String price, String description, String category, String id_petshop, String image, String petshop) {
         Id = id;
         this.name = name;
         this.price = price;
@@ -23,6 +24,7 @@ public class ModelFood {
         this.category = category;
         this.id_petshop = id_petshop;
         this.image = image;
+        this.petshop = petshop;
     }
 
     public int getId() {
@@ -65,11 +67,11 @@ public class ModelFood {
         this.category = category;
     }
 
-    public int getId_petshop() {
+    public String getId_petshop() {
         return id_petshop;
     }
 
-    public void setId_petshop(int id_petshop) {
+    public void setId_petshop(String id_petshop) {
         this.id_petshop = id_petshop;
     }
 
@@ -79,5 +81,13 @@ public class ModelFood {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getPetshop() {
+        return petshop;
+    }
+
+    public void setPetshop(String petshop) {
+        this.petshop = petshop;
     }
 }

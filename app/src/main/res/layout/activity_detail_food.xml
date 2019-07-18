@@ -46,11 +46,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
         <Button
+            android:visibility="invisible"
             android:id="@+id/btnBeli"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:text="b e l i"
+            android:textColor="@color/lightgray"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btnMasuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="masuk"
             android:textColor="@color/lightgray"
             android:textSize="18sp"/>
     </RelativeLayout>

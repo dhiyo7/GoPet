@@ -9,9 +9,9 @@ import retrofit2.http.Path;
 
 public interface FoodInterface {
 
-    @GET("foods")
+    @GET("item")
     Call<BaseListResponse<ModelFood>> getFood();
 
-    @GET("foods/{id}")
+    @GET("item/{id}")
     Call<BaseResponse<ModelFood>> showById(@Path("id") String id);
 }

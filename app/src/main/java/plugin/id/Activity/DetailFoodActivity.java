@@ -1,5 +1,6 @@
 package plugin.id.Activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,10 +32,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.lang.String.valueOf;
+
 public class DetailFoodActivity extends AppCompatActivity {
 
     private TextView tvPrice, tvCategory, tvSeller;
-    private Button btnBeli;
+    private Button btnBeli, btnMasuk;
     private ImageView ivDetailFood;
     private JustifiedTextView deskripsi;
     private FoodInterface foodInterface;
@@ -76,6 +79,7 @@ public class DetailFoodActivity extends AppCompatActivity {
         tvCategory = findViewById(R.id.tvCategory);
         tvSeller = findViewById(R.id.tvSeller);
         btnBeli = findViewById(R.id.btnBeli);
+        btnMasuk = findViewById(R.id.btnMasuk);
         deskripsi = (JustifiedTextView) findViewById(R.id.tvDesc);
         ivDetailFood = (ImageView) findViewById(R.id.ivDetailFood);
         foodInterface = ApiClient.getFoodInterfaceService();
@@ -104,7 +108,7 @@ public class DetailFoodActivity extends AppCompatActivity {
         });
     }
 
-    private String getId(){ return String.valueOf(getIntent().getIntExtra("ID", 0));}
+    private String getId(){ return valueOf(getIntent().getIntExtra("ID", 0));}
 
     private void fetchData() {
         Call<BaseResponse<ModelFood>> request = foodInterface.showById(getId());
@@ -132,11 +136,18 @@ public class DetailFoodActivity extends AppCompatActivity {
     private void fillAll(final ModelFood data) {
         tvCategory.setText(data.getCategory());
         tvPrice.setText(data.getPrice());
-//        tvSeller.setText(data.getId_petshop());
+        tvSeller.setText(data.getPetshop());
         deskripsi.setText(fromHtml(data.getDescription()));
         Glide.with(getApplicationContext()).load(ApiClient.ENDPOINT+"image/"+data.getImage()).into(ivDetailFood);
         collapsingToolbarLayout.setTitle(data.getName());
         tittle=data.getName();
+        btnMasuk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(DetailFoodActivity.this, LoginActivity.class);
+                startActivity(a);
+            }
+        });
         btnBeli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +155,8 @@ public class DetailFoodActivity extends AppCompatActivity {
                 OrderInterface orderInterface = ApiClient.getOrderInterface();
                 final String id_petshop = String.valueOf(data.getId_petshop());
                 final String id = String.valueOf(data.getId());
-                Call<BaseResponse<ModelOrder>> request = orderInterface.order(getUserId(), id_petshop, id);
+                Call<BaseResponse<ModelOrder>> request;
+                request = orderInterface.order("Bearer "+getToken(), id_petshop, id);
                 request.enqueue(new Callback<BaseResponse<ModelOrder>>(){
                     @Override
                     public void onResponse(Call<BaseResponse<ModelOrder>> call, Response<BaseResponse<ModelOrder>> response) {
@@ -157,7 +169,7 @@ public class DetailFoodActivity extends AppCompatActivity {
                                 Toast.makeText(DetailFoodActivity.this, "Tidak dapat membeli", Toast.LENGTH_SHORT).show();
                             }
                         }else{
-//                            Toast.makeText(DetailFoodActivity.this, getUserId()+" "+ id_petshop+ " " + id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DetailFoodActivity.this, getToken()+" "+ id_petshop+ " " + id, Toast.LENGTH_SHORT).show();
                             Toast.makeText(DetailFoodActivity.this, "Failed to get response from server", Toast.LENGTH_SHORT).show();
                         }
                         btnBeli.setEnabled(true);
@@ -174,8 +186,29 @@ public class DetailFoodActivity extends AppCompatActivity {
 
     }
 
-    private String getUserId() {
-        String token = setting.getString("USER_ID", "UNDIFINED");
-        return token;
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (isNotLogedIn()){
+            btnMasuk.setVisibility(View.VISIBLE);
+            btnBeli.setVisibility(View.INVISIBLE);
+        }else {
+            btnMasuk.setVisibility(View.INVISIBLE);
+            btnBeli.setVisibility(View.VISIBLE);
+        }
+
+
+    }
+
+    private boolean isNotLogedIn() {
+        String token = setting.getString("TOKEN", "UNDIFINED");
+        return token == null || token.equals("UNDIFINED");
+    }
+
+    private final String getToken() {
+        SharedPreferences SharedPreferences = getSharedPreferences("USER", MODE_PRIVATE);
+        String api_token = SharedPreferences.getString("TOKEN", "UNDIFINED");
+        return api_token;
     }
 }
