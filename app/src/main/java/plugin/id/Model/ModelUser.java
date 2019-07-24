@@ -9,16 +9,22 @@ public class ModelUser {
     @SerializedName("email") private String email;
     @SerializedName("password") private String password;
     @SerializedName("api_token") private String api_token;
+    @SerializedName("address") private String address;
+    @SerializedName("phone") private  String phone;
+    @SerializedName("pet_name") private String pet_name;
+    @SerializedName("id_doctor") private int id_doctor;
 
     public ModelUser() {
     }
 
-    public ModelUser(int id, String name, String email, String password, String api_token) {
+    public ModelUser(int id, String name, String email, String password, String api_token, String address, String phone) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.api_token = api_token;
+        this.address = address;
+        this.phone = phone;
     }
 
     public int getId() {
@@ -59,5 +65,21 @@ public class ModelUser {
 
     public void setApi_token(String api_token) {
         this.api_token = api_token;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

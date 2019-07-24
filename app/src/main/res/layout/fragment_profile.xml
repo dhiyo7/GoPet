@@ -81,6 +81,26 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btnMasuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom"
+            android:text="Edit Profile"
+            android:textSize="14sp"
+            android:textColor="@color/lightgray"/>
+
+        <Button
+            android:visibility="invisible"
+            android:id="@+id/btnLogout"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom"
+            android:text="Logout"
+            android:textSize="14sp"
+            android:textColor="@color/lightgray"/>
+
 
 
 

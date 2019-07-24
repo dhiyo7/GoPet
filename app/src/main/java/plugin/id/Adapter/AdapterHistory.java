@@ -60,6 +60,7 @@ public class AdapterHistory extends RecyclerView.Adapter<AdapterHistory.ViewHold
             tvItem = itemView.findViewById(R.id.tvItem);
             tvPetshop = itemView.findViewById(R.id.tvPetshop);
             tvHarga = itemView.findViewById(R.id.tvHarga);
+            tvStatus = itemView.findViewById(R.id.tvStatus);
         }
 
         public void binding(final ModelOrder modelOrder, final Context context) {
@@ -68,6 +69,7 @@ public class AdapterHistory extends RecyclerView.Adapter<AdapterHistory.ViewHold
             tvItem.setText(modelOrder.getItem());
             tvPetshop.setText(modelOrder.getPetshop());
             tvHarga.setText(modelOrder.getPrice());
+            tvStatus.setText(modelOrder.getStatus());
         }
     }
 }

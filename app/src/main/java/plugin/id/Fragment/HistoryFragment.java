@@ -87,7 +87,7 @@ public class HistoryFragment extends Fragment {
 
             @Override
             public void onFailure(Call<BaseListResponse<ModelOrder>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Error : "+ t.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Error : "+ t.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -11,13 +11,13 @@ public class ModelOrder {
     @SerializedName("petshop") private String petshop;
     @SerializedName("price") private String price;
     @SerializedName("item") private  String item;
-    @SerializedName("status") private boolean status;
+    @SerializedName("status") private String status;
     @SerializedName("created_at") private String created_at;
 
     public ModelOrder() {
     }
 
-    public ModelOrder(String api_token, String id_petshop, int id_food, int id, String petshop, String price, String item, boolean status, String created_at) {
+    public ModelOrder(String api_token, String id_petshop, int id_food, int id, String petshop, String price, String item, String status, String created_at) {
         this.api_token = api_token;
         this.id_petshop = id_petshop;
         this.id_food = id_food;
@@ -85,11 +85,11 @@ public class ModelOrder {
         this.item = item;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
