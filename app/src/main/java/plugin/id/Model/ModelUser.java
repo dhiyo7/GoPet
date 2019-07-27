@@ -17,7 +17,7 @@ public class ModelUser {
     public ModelUser() {
     }
 
-    public ModelUser(int id, String name, String email, String password, String api_token, String address, String phone) {
+    public ModelUser(int id, String name, String email, String password, String api_token, String address, String phone, String pet_name, int id_doctor) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -25,6 +25,8 @@ public class ModelUser {
         this.api_token = api_token;
         this.address = address;
         this.phone = phone;
+        this.pet_name = pet_name;
+        this.id_doctor = id_doctor;
     }
 
     public int getId() {
@@ -81,5 +83,21 @@ public class ModelUser {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPet_name() {
+        return pet_name;
+    }
+
+    public void setPet_name(String pet_name) {
+        this.pet_name = pet_name;
+    }
+
+    public int getId_doctor() {
+        return id_doctor;
+    }
+
+    public void setId_doctor(int id_doctor) {
+        this.id_doctor = id_doctor;
     }
 }

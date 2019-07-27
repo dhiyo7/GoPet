@@ -20,5 +20,5 @@ public interface UserInterface {
 
     @FormUrlEncoded
     @POST("user/diagnosis")
-    Call<BaseResponse<ModelUser>> diagnosa(@Header("Authorization") String api_token, @Field("pet_name") String pet_name);
+    Call<BaseResponse<ModelUser>> diagnosa(@Header("Authorization") String api_token, @Field("pet_name") String pet_name, @Field("id_doktor") String id_doktor);
 }

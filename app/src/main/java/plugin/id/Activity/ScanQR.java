@@ -123,7 +123,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
     }
 
     @Override
-    public void handleResult(Result result) {
+    public void handleResult(final Result result) {
         final String myResult = result.getText();
         Log.d("QRCodeScanner", result.getText());
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
@@ -133,7 +133,9 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(ScanQR.this);
+                Intent a = new Intent(ScanQR.this, DiagnosaActivity.class);
+                a.putExtra("ID_DOCTOR",result.getText());
+                startActivity(a);
             }
         });
         builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
