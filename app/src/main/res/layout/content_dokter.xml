@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Activity.DokterActivity"
-    tools:showIn="@layout/activity_doket">
+    tools:showIn="@layout/activity_dokter">
 
         <android.support.v7.widget.RecyclerView
             android:layout_marginBottom="50dp"

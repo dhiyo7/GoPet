@@ -96,6 +96,6 @@
     <string name="title_activity_detail_petshop">DetailPetshopActivity</string>
     <string name="title_activity_detail_wash_spa">DetailWashSpaActivity</string>
     <string name="title_activity_detail_buy">DetailBuyActivity</string>
-    <string name="title_activity_doket">DoketActivity</string>
+    <string name="title_activity_doket">Dokter Activity</string>
     <string name="title_activity_detail_comunity">DetailComunityActivity</string>
 </resources>

@@ -13,11 +13,13 @@ public class ModelUser {
     @SerializedName("phone") private  String phone;
     @SerializedName("pet_name") private String pet_name;
     @SerializedName("id_doctor") private int id_doctor;
-
+    @SerializedName("doctor") private String doctor;
+    @SerializedName("diagnosis") private String diagnosis;
+    @SerializedName("created_at") private String created_at;
     public ModelUser() {
     }
 
-    public ModelUser(int id, String name, String email, String password, String api_token, String address, String phone, String pet_name, int id_doctor) {
+    public ModelUser(int id, String name, String email, String password, String api_token, String address, String phone, String pet_name, int id_doctor, String doctor, String diagnosis, String created_at) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -27,6 +29,9 @@ public class ModelUser {
         this.phone = phone;
         this.pet_name = pet_name;
         this.id_doctor = id_doctor;
+        this.doctor = doctor;
+        this.diagnosis = diagnosis;
+        this.created_at = created_at;
     }
 
     public int getId() {
@@ -99,5 +104,29 @@ public class ModelUser {
 
     public void setId_doctor(int id_doctor) {
         this.id_doctor = id_doctor;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 }

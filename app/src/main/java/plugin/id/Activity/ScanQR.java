@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import plugin.id.Server.UserInterface;
 
 import static android.Manifest.permission.CAMERA;
 
@@ -25,10 +26,14 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
+    private UserInterface userInterface;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
@@ -134,7 +139,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent a = new Intent(ScanQR.this, DiagnosaActivity.class);
-                a.putExtra("ID_DOCTOR",result.getText());
+                a.putExtra("DOCTOR_ID" ,result.getText().toString());
                 startActivity(a);
             }
         });

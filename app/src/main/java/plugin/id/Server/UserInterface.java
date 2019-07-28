@@ -1,10 +1,12 @@
 package plugin.id.Server;
 
+import plugin.id.Converter.BaseListResponse;
 import plugin.id.Converter.BaseResponse;
 import plugin.id.Model.ModelUser;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
@@ -20,5 +22,10 @@ public interface UserInterface {
 
     @FormUrlEncoded
     @POST("user/diagnosis")
-    Call<BaseResponse<ModelUser>> diagnosa(@Header("Authorization") String api_token, @Field("pet_name") String pet_name, @Field("id_doktor") String id_doktor);
+    Call<BaseResponse<ModelUser>> diagnosa(@Header("Authorization") String api_token, @Field("pet_name") String pet_name, @Field("id_doctor") String id_doctor);
+
+    @GET("user/diagnosis/history")
+    Call<BaseListResponse<ModelUser>> getHistoriDiagnosi(@Header("Authorization") String api_token);
+
+
 }

@@ -51,8 +51,8 @@ public class DiagnosaActivity extends AppCompatActivity {
                 try {
                     String pet = etPet.getText().toString();
                     if (!pet.isEmpty()){
-                        if (pet.length() < 3 ){
-                            etPet.setError("Silahkan Masukan Nama Hewan Peliharan Anda");
+                        if (pet.length() < 2 ){
+                            etPet.setError("Silahkan Masukan Nama Hewan Peliharan Anda Minimal 2 Karakter");
                             etPet.requestFocus();
                             return;
                         }
@@ -78,7 +78,7 @@ public class DiagnosaActivity extends AppCompatActivity {
                                     Toast.makeText(DiagnosaActivity.this, "failed", Toast.LENGTH_SHORT).show();
                                 }
                             }else {
-                                System.err.println("uwu " + response.body().getMessage());
+                                System.err.println("mbuhlah " + response.body().getMessage());
                                 Toast.makeText(DiagnosaActivity.this, "sukses tapi salah ", Toast.LENGTH_SHORT).show();
                             }
                             btnKirim.setEnabled(true);
@@ -103,19 +103,15 @@ public class DiagnosaActivity extends AppCompatActivity {
         editor.putString("TOKEN", api_token);
         editor.putString("USER_ID", id);
         editor.putString("DOCTOR_ID", id_doctor);
-        editor.commit();
-        finish();
+//        editor.commit();
     }
 
 
-    private String getDokter(){
-        return getIntent().getStringExtra("ID_DOCTOR");
-    }
+    private String getDokter(){ return String.valueOf(getIntent().getStringExtra("DOCTOR_ID"));}
 
-    private String getToken() {
-        SharedPreferences SharedPreferences = this.getSharedPreferences("USER", MODE_PRIVATE);
-        String api_token = SharedPreferences.getString("TOKEN", "UNDIFINED");
-        return api_token;
+    private String getToken(){
+        SharedPreferences settings = getSharedPreferences("USER", MODE_PRIVATE);
+        return settings.getString("TOKEN", "UNDIFINED");
     }
 
 
