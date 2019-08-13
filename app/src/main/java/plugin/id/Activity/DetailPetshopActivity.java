@@ -1,5 +1,7 @@
 package plugin.id.Activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -11,11 +13,13 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.model.LatLng;
 import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
 import org.w3c.dom.Text;
@@ -37,6 +41,7 @@ public class DetailPetshopActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private AppBarLayout appBarLayout;
     private String tittle = " ";
+    private Button btnMaps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +102,9 @@ public class DetailPetshopActivity extends AppCompatActivity {
             }
         });
 
+        btnMaps = findViewById(R.id.btnMaps);
+
+
 
     }
 
@@ -135,5 +143,17 @@ public class DetailPetshopActivity extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(data.getName());
         tittle = data.getName();
         Glide.with(getApplicationContext()).load(ApiClient.ENDPOINT+"images/"+data.getImage()).into(ivDetailPet);
+        btnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LatLng pcc = new LatLng(Double.parseDouble(data.getLatitude()),Double.parseDouble(data.getLongitude()));
+                String map = "http://maps.google.com/maps?q=loc:" + data.getLatitude() + "," + data.getLongitude() + " (" + data.getName() + ")";
+                Uri gmmIntentUri = (Uri) Uri.parse(map);
+                System.err.println(pcc);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
     }
 }

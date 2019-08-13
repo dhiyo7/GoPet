@@ -11,11 +11,13 @@ public class ModelWashSpa {
     @SerializedName("districts") private String districts;
     @SerializedName("city") private String city;
     @SerializedName("image") private String image;
+    @SerializedName("latitude") private  String latitude;
+    @SerializedName("longitude") private String longitude;
 
     public ModelWashSpa() {
     }
 
-    public ModelWashSpa(int id, String name, String description, String street, String districts, String city, String image) {
+    public ModelWashSpa(int id, String name, String description, String street, String districts, String city, String image, String latitude, String longitude) {
         Id = id;
         this.name = name;
         this.description = description;
@@ -23,6 +25,8 @@ public class ModelWashSpa {
         this.districts = districts;
         this.city = city;
         this.image = image;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getId() {
@@ -79,5 +83,21 @@ public class ModelWashSpa {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }
